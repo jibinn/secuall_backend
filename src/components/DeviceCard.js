@@ -1,44 +1,28 @@
 import React from 'react';
-import { Card, CardContent, Typography, Button, Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import './DeviceCard.css'; // Custom CSS for animations and styling
 
 const DeviceCard = ({ device }) => {
+  // Click handler for device card
+  const handleClick = () => {
+    alert(`You clicked on ${device.name}`);
+    // You can replace this with navigation or other actions
+  };
+
   return (
-    <Card sx={styles.card}>
-      <CardContent>
-        <Typography variant="h5" sx={styles.deviceName}>
-          {device.name}
-        </Typography>
-        <Box sx={styles.buttons}>
-          <Button variant="contained" color="primary" sx={styles.button}>
-            View Live
-          </Button>
-          <Button variant="outlined" color="secondary" sx={styles.button}>
-            View Alerts
-          </Button>
-        </Box>
-      </CardContent>
-    </Card>
+    <Box className="device-card" onClick={handleClick}>
+      <img
+        src={`/images/${device.name.toLowerCase()}.jpg`}  // Reference images using the device name
+        alt={device.name}
+        className="device-image"
+      />
+      <Typography variant="h6" className="device-name">
+        {device.name}
+      </Typography>
+    </Box>
   );
 };
 
-const styles = {
-  card: {
-    padding: '1rem',
-    borderRadius: '12px',
-    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
-  },
-  deviceName: {
-    marginBottom: '1rem',
-    fontWeight: 500,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  button: {
-    padding: '0.5rem 1rem',
-  },
-};
-
 export default DeviceCard;
+
+

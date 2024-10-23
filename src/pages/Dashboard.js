@@ -1,12 +1,12 @@
 import React from 'react';
-import { Container, Grid, Typography, Box } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import DeviceList from '../components/DeviceList';
 
 const Dashboard = () => {
   return (
     <Container maxWidth="lg" sx={styles.container}>
       <Typography variant="h4" sx={styles.title}>
-        Device Dashboard
+        Sunset Products - Optimized performance with our subscription plan
       </Typography>
       <Box sx={styles.deviceList}>
         <DeviceList />
@@ -21,15 +21,18 @@ const styles = {
     padding: '2rem',
     backgroundColor: '#f9f9f9',
     borderRadius: '8px',
+    textAlign: 'center',
   },
   title: {
-    marginBottom: '2rem',
+    fontSize: '1.8rem',
     fontWeight: 600,
-    color: '#3f51b5',
+    marginBottom: '2rem',
+    color: '#333',
   },
   deviceList: {
-    marginTop: '1rem',
+    marginTop: '2rem',
   },
 };
 
 export default Dashboard;
+
