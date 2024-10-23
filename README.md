@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# AI Dashcam Monitoring App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is an AI-enabled dashcam monitoring platform that streams live video from dashcams, detects anomalies in real-time, and alerts users.
 
-## Available Scripts
+## Features:
+- **Real-Time Video Streaming**: Stream live video from dashcams to the dashboard.
+- **AI-Powered Anomaly Detection**: Real-time AI detection of driving anomalies and risky behaviors.
+- **Event Alerts**: Get real-time alerts for accidents, harsh driving, or anomalies.
+- **Cloud Video Storage**: Save video footage in the cloud for later review.
+- **GPS Tracking**: Monitor vehicle locations using GPS data.
+- **Multi-Cam Support**: Support for streaming from multiple cameras (e.g., front and rear).
 
-In the project directory, you can run:
+## Backend Requirements:
+1. **Real-Time Video Streaming API**: Supports HLS or RTSP for live video.
+2. **Anomaly Detection API**: Provides AI-based anomaly detection on video streams.
+3. **Event Notification API**: Sends WebSocket or Firebase notifications.
+4. **User Authentication**: API for user login and signup.
+5. **Video Storage**: Cloud storage for saving videos.
+6. **Analytics API**: Provides stats on video and anomaly detections.
+7. **GPS Tracking**: API to report vehicle location.
 
-### `npm start`
+## Camera Requirements:
+1. **RTSP/HLS Streaming**: Camera must support these protocols.
+2. **Night Vision**: Camera should provide low-light video streaming.
+3. **AI Processing**: (Optional) Offload some AI anomaly detection to the camera.
+4. **Resolution Control**: Adjust video quality based on bandwidth.
+5. **Multi-Channel Support**: Support for multiple video feeds.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to Run:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ceo-hitoat/sec1.git
+   cd device-monitoring-app
