@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
-import Navbar from './components/Navbar'; // Import the Navbar component
-import HomePage from './pages/HomePage'; // Import the HomePage component
+import Navbar from './components/Navbar';
+import Footer from './pages/Footer';  // Import the Footer component
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import Dashboard from './pages/Dashboard';
@@ -37,6 +38,7 @@ function App() {
           <Route path="/device/:id" element={<VideoStream />} />
           <Route path="/alerts" element={<AnomalyAlerts />} />
         </Routes>
+        <Footer />  {/* Footer will be visible on all pages */}
       </Router>
     </ThemeProvider>
   );

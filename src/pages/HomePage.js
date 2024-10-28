@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Typography, Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Dashboard from './Dashboard'; // Import the Dashboard component
-import backgroundImage from '../images/aicam.jpg'; // Adjust the image path accordingly
+import backgroundImage from '../images/aicam1.jpg'; // Adjust the image path accordingly
 
 const HomePage = () => {
   return (
