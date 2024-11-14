@@ -5,24 +5,22 @@ const firebaseAdmin = require('../firebaseConfig');
 
 /// Signup function
 exports.signup = async (req, res) => {
-  const { token, username, email } = req.body;
+  const { token, username } = req.body;
 
-  // Log the incoming data
-  console.log('Incoming request:', req.body);
-
-  if (!username || !email || !token) {
-    console.error('Missing required fields: username, email, or token');
-    return res.status(400).json({ message: 'All fields (username, email, token) are required' });
+  if (!username || !token) {
+    console.error('Missing required fields: username or token');
+    return res.status(400).json({ message: 'All fields (username and token) are required' });
   }
 
   try {
-    // Decode Firebase token
+    // Decode Firebase token to get UID and email
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
     const uid = decodedToken.uid;
+    const email = decodedToken.email;
 
-    console.log('Decoded Firebase Token:', decodedToken); // Log decoded token details
+    console.log('Decoded Firebase Token:', decodedToken); // Debugging
 
-    // Check if user exists in the database
+    // Check if the user already exists in the database
     const [existingUser] = await db.promise().query('SELECT * FROM users WHERE email = ?', [email]);
 
     if (existingUser.length > 0) {
@@ -30,20 +28,17 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Insert new user into the database
+    // Insert the new user into the database
     const [result] = await db.promise().query(
       'INSERT INTO users (firebase_uid, username, email) VALUES (?, ?, ?)',
       [uid, username, email]
     );
 
-    console.log('User inserted:', result); // Log the successful insertion
-
+    console.log('User registered successfully:', result);
     res.status(201).json({ message: 'User registered successfully', user: { id: result.insertId, username, email } });
 
   } catch (err) {
-    console.error('Error during signup:', err); // Log the error stack
-
-    // Send the error message to the frontend
+    console.error('Error during signup:', err);
     res.status(500).json({ message: 'Database error', error: err.message });
   }
 };
