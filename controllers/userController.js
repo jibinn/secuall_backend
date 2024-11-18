@@ -46,43 +46,41 @@ exports.signup = async (req, res) => {
 
 // Login function
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
+  const { token } = req.body;
 
-  // Check if all fields are provided
-  if (!email || !password) {
-    return res.status(400).json({ message: 'Email and password are required' });
+  if (!token) {
+    return res.status(400).json({ message: 'Token is required' });
   }
 
   try {
-    // Find user by email
+    // Decode Firebase token
+    const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
+    const uid = decodedToken.uid;
+    const email = decodedToken.email;
+
+    // Find user in the database
     const [results] = await db.promise().query('SELECT * FROM users WHERE email = ?', [email]);
 
     if (results.length === 0) {
       return res.status(400).json({ message: 'User does not exist' });
     }
 
-    const user = results[0];  // Assuming the email is unique
+    const user = results[0];
 
-    // Compare the password with the stored hashed password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
-    }
-
-    // Create JWT token
-    const token = jwt.sign(
-      { id: user.id, username: user.username, email: user.email },
-      process.env.SECRET_KEY,  // Your secret key from .env
-      { expiresIn: '1h' }  // Token expiration time
+    // Generate your custom JWT token if needed
+    const jwtToken = jwt.sign(
+      { id: user.id, email: user.email, username: user.username },
+      process.env.SECRET_KEY,
+      { expiresIn: '1h' }
     );
 
-    // Send the JWT token as a response
     res.status(200).json({
       message: 'Login successful',
-      token
+      token: jwtToken,
+      user: { id: user.id, email: user.email, username: user.username },
     });
   } catch (err) {
     console.error('Error during login:', err);
-    res.status(500).json({ message: 'Error logging in', error: err.message });
+    res.status(401).json({ message: 'Unauthorized', error: err.message });
   }
 };
